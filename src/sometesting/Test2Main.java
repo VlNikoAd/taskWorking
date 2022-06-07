@@ -1,23 +1,69 @@
 package sometesting;
 
+import java.util.Scanner;
+import java.util.function.UnaryOperator;
+
 public class Test2Main {
-    static int N = 3;
 
     public static void main(String[] args) {
-        System.out.println(printAnIsoscelesTriangle(N));
+
+//        //Способ через передачу параметров
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Входные параметры: ");
+//        System.out.println("Высота: \nШирина: ");
+//        final int height = scanner.nextInt();
+//        final int width = scanner.nextInt();
+//        printDiamond(height, width);
+
+        //Тестовый способ для отладки
+        printDiamondTest();
     }
 
-    public static String printAnIsoscelesTriangle(int N) {
-        StringBuilder result = new StringBuilder();
-        for (int r = 1; r <= N; r++) {
-            for (int sp = 1; sp <= N - r; sp++) {
-                result.append(" ");
+    private static void printDiamondTest() {
+        int size = 5;
+        int center = size / 2;
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (i <= center) {
+                    // Верхняя половина ромба
+                    if (j == center - i || j == center + i)
+                        System.out.print("*");
+                    else
+                        System.out.print(" ");
+                } else {
+                    // Нижняя половина ромба
+                    if (j == center + i - size + 1 || j == center - i + size - 1)
+                        System.out.print("*");
+                    else
+                        System.out.print(" ");
+                }
             }
-            for (int c = 1; c <= (r * 2) - 1; c++) {
-                result.append("*");
-            }
-            result.append(System.lineSeparator());
+            System.out.println();
         }
-        return result.toString();
+    }
+
+    private static void printDiamond(int height, int width) {
+        int centerHeight = height / 2;
+        int centerWidth = width / 2;
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (i <= centerHeight) {
+                    // Верхняя половина ромба
+                    if (j == centerWidth - i || j == centerWidth + i)
+                        System.out.print("#");
+                    else
+                        System.out.print(" ");
+                } else {
+                    // Нижняя половина ромба
+                    if (j == centerWidth + i - height + 1 || j == centerWidth - i + height - 1)
+                        System.out.print("#");
+                    else
+                        System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
     }
 }
